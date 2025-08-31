@@ -20,5 +20,7 @@ function myfunc(){
     console.log("my function is ready");    
 }
 myfunc();
+
+
  person = {firstName:"Ali", lastName:"Muhammad", age:21, eyeColor:"black"};
 console.log(person.lastName);

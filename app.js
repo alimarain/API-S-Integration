@@ -1,5 +1,7 @@
 const e = require("express");
 const express = require("express");
+const mongoose = require('mongoose');
+
 
 const app = express();
 const users =[
@@ -245,8 +247,14 @@ app.get("/users/:id",(req,res)=>{
     res.json(getSelectedUser);
 });
 
-app.post("/users",(req,res)=>{
-    const body = req.body;
+// Connect to your MongoDB database
+mongoose.connect('mongodb+srv://alimarain55_db_user:ali12345@cluster0.n2os0rx.mongodb.net/')
+  .then(() => console.log('Connected to MongoDB!'))
+  .catch(err => console.error('Could not connect to MongoDB...', err));
+
+
+app.post("/users",async(req,res)=>{
+    const user = await User.creates(req,body);
      users.push(body);
     res.json(users);
 });

@@ -1,9 +1,12 @@
 const e = require("express");
 const express = require("express");
 const mongoose = require('mongoose');
+const User = require('./models/user');
+
 
 
 const app = express();
+app.use(express.json());
 const users =[
   {
     "id": 1,
@@ -254,9 +257,8 @@ mongoose.connect('mongodb+srv://alimarain55_db_user:ali12345@cluster0.n2os0rx.mo
 
 
 app.post("/users",async(req,res)=>{
-    const user = await User.creates(req,body);
-     users.push(body);
-    res.json(users);
+    const user = await User.create(req.body);
+    res.json(user);
 });
 
 app.listen(575,()=>{
